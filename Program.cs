@@ -322,7 +322,10 @@ private static int ReadInt(string message, int min, int max)
     }
     }
 
-    private static void Pause()
-    {
-    }
+private static void Pause()
+{
+    Console.WriteLine();
+    Console.WriteLine("Натиснете Enter за продължение...");
+    Console.ReadLine();
+}
 }
