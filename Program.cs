@@ -76,6 +76,42 @@ public static void Main()
 
     private static void AddCar()
     {
+        Console.WriteLine("---Добаявне на нов автомобил---");
+        string 
+            string carId;
+    while (true)
+    {
+        carId = ReadRequiredText("Въведете уникален ID: ");
+
+        if (Cars.Any(c => c.CarId.Equals(carId, StringComparison.OrdinalIgnoreCase)))
+        {
+            Console.WriteLine("Вече има автомобил с такъв ID. Въведете друг ID.");
+        }
+        else
+        {
+            break;
+        }
+    }
+
+    string make = ReadRequiredText("Въведете марка: ");
+    string model = ReadRequiredText("Въведете модел: ");
+    int year = ReadInt("Въведете година на производство: ", 1886, DateTime.Now.Year + 1);
+    decimal price = ReadDecimal("Въведете цена: ", 0);
+
+    Car newCar = new()
+    {
+        CarId = carId,
+        Make = make,
+        Model = model,
+        Year = year,
+        Price = price,
+        Available = true
+    };
+
+    Cars.Add(newCar);
+    SaveCarsToFile();
+
+    Console.WriteLine("Автомобилът е добавен успешно и е записан във файла.");
     }
 
     private static void SellCar()
