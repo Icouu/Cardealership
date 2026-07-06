@@ -268,7 +268,22 @@ private static void SaveCarsToFile()
 
     private static string ReadRequiredText(string message)
     {
-        return "";
+        private static string ReadRequiredText(string message)
+{
+    while (true)
+    {
+        Console.Write(message);
+
+        string value = Console.ReadLine()?.Trim() ?? string.Empty;
+
+        if (!string.IsNullOrWhiteSpace(value))
+        {
+            return value;
+        }
+
+        Console.WriteLine("Полето не може да бъде празно.");
+    }
+}
     }
 
     private static int ReadInt(string message, int min, int max)
