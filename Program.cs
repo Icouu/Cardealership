@@ -113,11 +113,32 @@ public static void Main()
 
     Console.WriteLine("Автомобилът е добавен успешно и е записан във файла.");
     }
+    
+private static void SellCar()
+{
+    Console.WriteLine("--- Продажба на автомобил ---");
 
-    private static void SellCar()
+    string id = ReadRequiredText("Въведете ID на автомобила за продажба: ");
+
+    Car? car = Cars.FirstOrDefault(c => c.CarId.Equals(id, StringComparison.OrdinalIgnoreCase));
+
+    if (car == null)
     {
+        Console.WriteLine("Не е намерен автомобил с този ID.");
+        return;
     }
 
+    if (!car.Available)
+    {
+        Console.WriteLine("Този автомобил вече е продаден.");
+        return;
+    }
+
+    car.Available = false;
+    SaveCarsToFile();
+
+    Console.WriteLine("Автомобилът е маркиран като продаден и файлът е актуализиран.");
+}
     private static void CheckAvailability()
     {
     }
