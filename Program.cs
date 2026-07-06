@@ -285,11 +285,23 @@ private static void SaveCarsToFile()
     }
 }
     }
-
-    private static int ReadInt(string message, int min, int max)
+   
+private static int ReadInt(string message, int min, int max)
+{
+    while (true)
     {
-        return 0;
+        Console.Write(message);
+
+        string input = Console.ReadLine() ?? string.Empty;
+
+        if (int.TryParse(input, out int number) && number >= min && number <= max)
+        {
+            return number;
+        }
+
+        Console.WriteLine($"Въведете валидно цяло число между {min} и {max}.");
     }
+}
 
     private static decimal ReadDecimal(string message, decimal min)
     {
