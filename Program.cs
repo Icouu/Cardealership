@@ -26,10 +26,55 @@ public class Program
     private const string FileName = "cars.txt";
     private static readonly List<Car> Cars = new();
 
-    public static void Main()
+    // COMMIT 3 - Main()
+
+public static void Main()
+{
+    LoadCarsFromFile();
+
+    while (true)
     {
-        Console.WriteLine("Проект: Управление на автокъща");
+        Console.Clear();
+        Console.WriteLine("=====================================");
+        Console.WriteLine("     УПРАВЛЕНИЕ НА АВТОКЪЩА");
+        Console.WriteLine("=====================================");
+        Console.WriteLine("1. Добавяне на нов автомобил");
+        Console.WriteLine("2. Продажба на автомобил");
+        Console.WriteLine("3. Проверка на наличност");
+        Console.WriteLine("4. Справка за всички автомобили");
+        Console.WriteLine("0. Изход");
+        Console.WriteLine("=====================================");
+        Console.Write("Изберете опция: ");
+
+        string? choice = Console.ReadLine();
+        Console.WriteLine();
+
+        switch (choice)
+        {
+            case "1":
+                AddCar();
+                break;
+            case "2":
+                SellCar();
+                break;
+            case "3":
+                CheckAvailability();
+                break;
+            case "4":
+                ShowAllCars();
+                break;
+            case "0":
+                SaveCarsToFile();
+                Console.WriteLine("Данните са записани. Довиждане!");
+                return;
+            default:
+                Console.WriteLine("Невалиден избор. Опитайте отново.");
+                break;
+        }
+
+        Pause();
     }
+}
 
     private static void AddCar()
     {
