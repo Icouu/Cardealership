@@ -305,7 +305,21 @@ private static int ReadInt(string message, int min, int max)
 
     private static decimal ReadDecimal(string message, decimal min)
     {
-        return 0;
+        private static decimal ReadDecimal(string message, decimal min)
+{
+    while (true)
+    {
+        Console.Write(message);
+
+        string input = (Console.ReadLine() ?? string.Empty).Replace(',', '.');
+
+        if (decimal.TryParse(input, NumberStyles.Number, CultureInfo.InvariantCulture, out decimal number) && number >= min)
+        {
+            return number;
+        }
+
+        Console.WriteLine($"Въведете валидна цена, по-голяма или равна на {min}.");
+    }
     }
 
     private static void Pause()
