@@ -15,6 +15,10 @@ public class Car
     {
         return "";
     }
+    public override string ToString()
+    {
+        return "";
+    }
 }
 
 public class Program
