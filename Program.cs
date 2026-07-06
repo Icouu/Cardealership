@@ -25,9 +25,7 @@ public class Program
 {
     private const string FileName = "cars.txt";
     private static readonly List<Car> Cars = new();
-
-    // COMMIT 3 - Main()
-
+   
 public static void Main()
 {
     LoadCarsFromFile();
