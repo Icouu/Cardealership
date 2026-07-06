@@ -244,10 +244,27 @@ private static void ShowAllCars()
         });
     }
     }
+   
+private static void SaveCarsToFile()
+{
+    List<string> lines = new();
 
-    private static void SaveCarsToFile()
+    foreach (Car car in Cars)
     {
+        string line = string.Join('|',
+            car.CarId,
+            car.Make,
+            car.Model,
+            car.Year.ToString(CultureInfo.InvariantCulture),
+            car.Price.ToString(CultureInfo.InvariantCulture),
+            car.Available.ToString()
+        );
+
+        lines.Add(line);
     }
+
+    File.WriteAllLines(FileName, lines);
+}
 
     private static string ReadRequiredText(string message)
     {
