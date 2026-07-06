@@ -174,10 +174,22 @@ private static void SellCar()
         Console.WriteLine(car);
     }
     }
+        
+private static void ShowAllCars()
+{
+    Console.WriteLine("--- Справка за всички автомобили ---");
 
-    private static void ShowAllCars()
+    if (Cars.Count == 0)
     {
+        Console.WriteLine("Няма въведени автомобили.");
+        return;
     }
+
+    foreach (Car car in Cars)
+    {
+        Console.WriteLine(car);
+    }
+}
 
     private static void LoadCarsFromFile()
     {
