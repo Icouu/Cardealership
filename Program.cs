@@ -141,6 +141,38 @@ private static void SellCar()
 }
     private static void CheckAvailability()
     {
+        private static void CheckAvailability()
+{
+    Console.WriteLine("--- Проверка на наличност ---");
+    Console.WriteLine("Търсене по марка и/или модел. Може да оставите едното поле празно.");
+
+    Console.Write("Марка: ");
+    string make = Console.ReadLine()?.Trim() ?? string.Empty;
+
+    Console.Write("Модел: ");
+    string model = Console.ReadLine()?.Trim() ?? string.Empty;
+
+    if (string.IsNullOrWhiteSpace(make) && string.IsNullOrWhiteSpace(model))
+    {
+        Console.WriteLine("Трябва да въведете поне марка или модел.");
+        return;
+    }
+
+    var foundCars = Cars.Where(c =>
+        (string.IsNullOrWhiteSpace(make) || c.Make.Contains(make, StringComparison.OrdinalIgnoreCase)) &&
+        (string.IsNullOrWhiteSpace(model) || c.Model.Contains(model, StringComparison.OrdinalIgnoreCase))
+    ).ToList();
+
+    if (foundCars.Count == 0)
+    {
+        Console.WriteLine("Няма намерени автомобили по зададените критерии.");
+        return;
+    }
+
+    foreach (Car car in foundCars)
+    {
+        Console.WriteLine(car);
+    }
     }
 
     private static void ShowAllCars()
