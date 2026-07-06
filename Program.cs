@@ -193,6 +193,56 @@ private static void ShowAllCars()
 
     private static void LoadCarsFromFile()
     {
+        private static void LoadCarsFromFile()
+{
+    Cars.Clear();
+
+    if (!File.Exists(FileName))
+    {
+        File.WriteAllText(FileName, string.Empty);
+        return;
+    }
+
+    string[] lines = File.ReadAllLines(FileName);
+
+    foreach (string line in lines)
+    {
+        if (string.IsNullOrWhiteSpace(line))
+        {
+            continue;
+        }
+
+        string[] parts = line.Split('|');
+
+        if (parts.Length != 6)
+        {
+            continue;
+        }
+
+        bool validYear = int.TryParse(parts[3], out int year);
+        bool validPrice = decimal.TryParse(
+            parts[4],
+            NumberStyles.Number,
+            CultureInfo.InvariantCulture,
+            out decimal price
+        );
+        bool validAvailable = bool.TryParse(parts[5], out bool available);
+
+        if (!validYear || !validPrice || !validAvailable)
+        {
+            continue;
+        }
+
+        Cars.Add(new Car
+        {
+            CarId = parts[0],
+            Make = parts[1],
+            Model = parts[2],
+            Year = year,
+            Price = price,
+            Available = available
+        });
+    }
     }
 
     private static void SaveCarsToFile()
